@@ -66,44 +66,28 @@ import Addtion from './newComponent/Addnew'
 class App extends Component {
   state = {
     person : [
-      {name : "jaffar", age : '21'}
-    ]
-    ,toogleer : 'check more',
+      {name : "jaffar", age : '21'},
+      {name : "Ahmed", age : '21'},
+      {name : "erwerwe", age : '21'},
+      {name : "sadas", age : '21'}
+    ],
     flag : false
   };
-  //onclick
-  ChangeState = () =>{
-    this.setState({
-      person : [
-        {name : "jaffar Abbas", age : '21'}
-      ]
-    })
-  }
-  //runtime changes
-  RuntimeToggle = () =>{
-    this.setState({
-      flag : true
-    })
-  }
-  //name changer
-  NameChanger = (event) =>{
-    this.setState({
-      person : [
-        {name : event.target.value, age : '21'}
-      ]
-      ,toogleer : 'check more',
-      flag : true
-    })
-  }
+
+  deleteFunction = (persondelteIndex) =>{
+    const person = this.state.person;
+    person.splice(persondelteIndex,1);
+    this.setState({person:person});
+  } 
+
   render(){
     return(
       <div>
-        {this.state.flag === true ?
-          <div>
-            <Addtion name={this.state.person[0].name} age={this.state.person[0].age} toogle={this.ChangeState} newTogle={this.state.toogleer} changed={this.NameChanger} />
-          </div>:null
-        }
-        <button onClick={this.RuntimeToggle}>Click Toggler</button>
+         <div>
+            {this.state.person.map((person,index)=>{
+              return <Addtion name={person.name} age={person.age} delete={() => this.deleteFunction(index)}/>
+            })}
+         </div>
       </div>
     )
   };

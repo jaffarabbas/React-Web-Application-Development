@@ -4,12 +4,9 @@ import './Appnew.css'
 const addition = (props) => {
     return (
         <div className="po">
-             <h1 onClick={props.click}>Hello {props.name} {Math.floor(Math.random()*10/2)} age is {props.age}</h1>
-             <h1>{props.newTogle}</h1>
-             <button onClick={props.toogle}>Click</button>             
-             <input type="text" onChange={props.changed}/>
+             <h4 onClick={props.click}>Hello {props.name} {Math.floor(Math.random()*10/2)} age is {props.age}</h4>
+             <button onClick={props.delete}>delete</button>
         </div>
     )
-};
-
+}
 export default addition;
