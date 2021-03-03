@@ -66,10 +66,10 @@ import Addtion from './newComponent/Addnew'
 class App extends Component {
   state = {
     person : [
-      {name : "jaffar", age : '21'},
-      {name : "Ahmed", age : '21'},
-      {name : "erwerwe", age : '21'},
-      {name : "sadas", age : '21'}
+      {id:'1' , name : "jaffar", age : '21'},
+      {id:'2' , name : "Ahmed", age : '21'},
+      {id:'3' , name : "erwerwe", age : '21'},
+      {id:'4' , name : "sadas", age : '21'}
     ],
     flag : false
   };
@@ -85,7 +85,7 @@ class App extends Component {
       <div>
          <div>
             {this.state.person.map((person,index)=>{
-              return <Addtion name={person.name} age={person.age} delete={() => this.deleteFunction(index)}/>
+              return <Addtion name={person.name} age={person.age} key={person.id} delete={() => this.deleteFunction(index)}/>
             })}
          </div>
       </div>
