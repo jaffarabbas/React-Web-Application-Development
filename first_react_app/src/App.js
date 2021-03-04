@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Addtion from './newComponent/Addnew'
-
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 // const Compi = props => {
 //   const [user,setUser] = useState( {
@@ -66,10 +66,10 @@ import Addtion from './newComponent/Addnew'
 class App extends Component {
   state = {
     person : [
-      {id:'1' , name : "jaffar", age : '21'},
-      {id:'2' , name : "Ahmed", age : '21'},
-      {id:'3' , name : "erwerwe", age : '21'},
-      {id:'4' , name : "sadas", age : '21'}
+      {id:'1' , name : "jaffar"},
+      {id:'2' , name : "Ahmed"},
+      {id:'3' , name : "erwerwe"},
+      {id:'4' , name : "sadas"}
     ],
     flag : false
   };
@@ -80,12 +80,33 @@ class App extends Component {
     this.setState({person:person});
   } 
 
+  EditHandler = (event,id) =>{
+    const personIndex = this.state.person.findIndex(p =>{
+      return p.id == id;
+    });
+
+    const persons = {
+      ...this.state.person[personIndex]
+    };
+
+    persons.name = event.target.value;
+
+    const person = [...this.state.person];
+
+    person[personIndex] = persons;
+
+    this.setState({person:person});
+  }
+
   render(){
     return(
       <div>
+      <div>
+        <h1 className="text-center">Todo List</h1>
+      </div>
          <div>
             {this.state.person.map((person,index)=>{
-              return <Addtion name={person.name} age={person.age} key={person.id} delete={() => this.deleteFunction(index)}/>
+              return <Addtion name={person.name} key={person.id} delete={() => this.deleteFunction(index)} change={(event) => this.EditHandler(event,person.id)}/>
             })}
          </div>
       </div>
