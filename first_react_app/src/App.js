@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Addtion from './newComponent/Addnew'
+import Addtion from './Components/newComponent/Addnew'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 // const Compi = props => {
@@ -95,7 +95,7 @@ class App extends Component {
 
     person[personIndex] = persons;
 
-    this.setState({person:person});
+    this.setState({person:person})
   }
 
   render(){
