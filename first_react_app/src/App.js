@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Addtion from './Components/newComponent/Addnew'
+import Addtion from './Components/ListComponent/list'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 // const Compi = props => {
@@ -105,9 +105,7 @@ class App extends Component {
         <h1 className="text-center">Todo List</h1>
       </div>
          <div>
-            {this.state.person.map((person,index)=>{
-              return <Addtion name={person.name} key={person.id} delete={() => this.deleteFunction(index)} change={(event) => this.EditHandler(event,person.id)}/>
-            })}
+            <Addtion persons = {this.state.person} delete = {this.deleteFunction} changed = {this.EditHandler} />
          </div>
       </div>
     )
