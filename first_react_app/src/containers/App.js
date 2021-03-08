@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Addtion from './Components/ListComponent/list'
+import Addtion from '../Components/ListComponent/list'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 // const Compi = props => {
