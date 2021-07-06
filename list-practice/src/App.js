@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NumberList from './NumberList'
+import Todo from './todo'
 
 export default class App extends Component {
   render() {
@@ -13,13 +14,7 @@ export default class App extends Component {
       <div>
         <NumberList numbers={numbers} />
         <NumberList numbers={numbers2} />
-        <ul>
-          {todo.map((todo)=>(
-            <li key={todo.id}>
-                {todo.task} - {todo.status?'Done':''}
-            </li>
-          ))}
-        </ul>
+        <Todo todo={todo}/>
       </div>
     )
   }
