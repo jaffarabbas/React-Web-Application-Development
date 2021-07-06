@@ -11,7 +11,9 @@ class ToggleButton extends React.Component {
     }
     
     //event function 
-    handleClick = (e) => {
+    handleClick = (values,e) => {
+        console.log(e)
+        console.log(values)
         console.log(this.state.isToggleOn)
         this.setState((state) => {
             return { isToggleOn: state.isToggleOn ? false : true };
@@ -21,7 +23,7 @@ class ToggleButton extends React.Component {
     render(){
         return (
             <div>
-                <button onClick={this.handleClick}>
+                <button onClick={(e) => this.handleClick('values',e)}>
                     {this.state.isToggleOn?'ON':'OFF'}
                 </button>
             </div>
