@@ -1,33 +1,63 @@
 import React, { Component } from 'react'
 import CreateTask from '../CreateTask/CreateTask';
 import TaskList from '../TaskList/TaskList';
+import "../Container/css/Main.css"
+import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 const tasks = [];
 export default class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks:[],
+            tasks: [],
         };
     }
+    //create
     createTask = (task) => {
-        if(task.trim() === '') {
+        if (task.trim() === '') {
             alert('Task can\'t be empty');
             return;
         }
-        tasks.push({task, isCompleted: false})
-        this.setState({tasks:tasks})
+        tasks.push({ task, isCompleted: false })
+        this.setState({ tasks: tasks })
+    }
+    //delete
+    deleteTask = (taskId) => {
+        tasks.splice(taskId, 1);
+        this.setState({ tasks: tasks });
+    }
+    //edit
+    editTask = (taskId, task) => {
+        const taskItem = tasks[taskId];
+        taskItem.task = task;
+        this.setState({
+            tasks: tasks,
+        });
+    }
+    //complete task
+    toggleTask = (taskId) => {
+        const taskItem = tasks[taskId];
+        taskItem.isCompleted = !taskItem.isCompleted;
+        this.setState({ tasks: tasks });
     }
     render() {
         return (
-            <div>
-                <h1>Todo App</h1>
-                <div className="">
-                    <CreateTask createTask={this.createTask}/>
-                    <br/>
-                    <TaskList />
+            <div className="container">
+                <div className="row justify-content-md-center">
+                    <div className="col-auto col-sm-auto col-md-auto">
+                        <h1 className="text-center todo-header">Todo App</h1>
+                        <div className="form_container">
+                            <CreateTask createTask={this.createTask} />
+                            <TaskList
+                                tasks={this.state.tasks}
+                                deleteTask={this.deleteTask}
+                                editTask={this.editTask}
+                                toggleTask={this.toggleTask}
+                            />
+                        </div>
+                    </div>
                 </div>
-            </div> 
+            </div>
         )
     }
 }
