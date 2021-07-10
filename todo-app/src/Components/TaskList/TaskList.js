@@ -8,8 +8,8 @@ export default class TaskList extends Component {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Task</th>
-                        <th>Actions</th>
+                        <th className="th1">Task</th>
+                        <th className="th2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,7 +20,8 @@ export default class TaskList extends Component {
                             id={index} 
                             deleteTask={this.props.deleteTask} 
                             editTask={this.props.editTask}
-                            toggleTask = {this.props.toggleTask}    
+                            toggleTask = {this.props.toggleTask}   
+                            detailList={this.props.detailList} 
                         />
                     ))}
                 </tbody>
