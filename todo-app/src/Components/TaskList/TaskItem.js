@@ -32,6 +32,9 @@ export default class TaskItem extends Component {
         this.props.editTask(this.props.id,this.state.task);
         this.setState({isEditing: false,});
     }
+    detailList = () => {
+        this.props.detailList(this.props.id)
+    }
     render() {
         return (
             <tr>
@@ -44,22 +47,24 @@ export default class TaskItem extends Component {
                                 </form>
                             </td>
                             <td>
-                                <button onClick={this.handleSubmit} type="submit">Save</button>
-                                <button onClick={() => this.setEditingState(false)}>back</button>
+                                <button onClick={this.handleSubmit} type="submit" className="crudBtn btn btn-primary">Save</button>&nbsp;
+                                <button onClick={() => this.setEditingState(false)} className="crudBtn btn btn-danger">back</button>
                             </td>
                         </>
                     ) :
                     (
                         <>
                             <td onClick={this.toggleTask} className="list_row">
-                                <input  type="checkbox" readonly checked={this.props.taskItem.isCompleted}/>
+                                <input className="checkList" type="checkbox" readonly checked={this.props.taskItem.isCompleted}/>
+                                &nbsp;
                                 <span className={this.props.taskItem.isCompleted?'completeTask':'task_not_completed'}>
                                     {this.props.taskItem.task}
                                 </span>
                             </td>
                             <td>
-                                <button onClick={() => this.setEditingState(true)} className="btn btn-primary">Edit</button>
-                                <button onClick={this.deleteTask} className="btn btn-danger">Delete</button>
+                                <button onClick={() => this.setEditingState(true)} className="crudBtn btn btn-primary">Edit</button>&nbsp;
+                                <button onClick={this.deleteTask} className="crudBtn btn btn-danger">Delete</button>&nbsp;
+                                <button onClick={this.detailList} className="crudBtn btn btn-danger">Detail</button>
                             </td>
                         </>
                     )
