@@ -1,17 +1,36 @@
+*:hover,
+*:focus,
+*:active
+ {
+  outline: none;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  border: rgba(255, 255, 255, 0);
+}
+
+.create_input::-webkit-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #7F00FF;
+    opacity: 0.6;
+}
+
 .create_input{
     text-align: left;
-    border-top-color: #fff;
-    border-right-color: #fff;
-    border-bottom: 4px solid #7F00FF;
-    border-left-color: #fff;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom: 3px solid #7F00FF;
+    border-left-color: transparent;
     box-shadow: none;
     outline: 0;
     font-size: 20px;
     font-family: Almarai, sans-serif;
+    border-radius: 0%;
 }
 
 .create_input:focus{
-    outline: 0;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    border: rgba(255, 255, 255, 0);  
+    border-bottom: 3px solid #7F00FF;
 }
 
 .create_btn{
@@ -21,5 +40,7 @@
     background: linear-gradient(to right, #E100FF, #7F00FF);
     margin-top: 10px;
 }
-  
-  
+
+.create_btn:focus,.create_btn:hover{
+    color: #fff;
+}
