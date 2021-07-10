@@ -40,12 +40,18 @@ export default class Main extends Component {
         taskItem.isCompleted = !taskItem.isCompleted;
         this.setState({ tasks: tasks });
     }
+    //detial
+    detailList = (taskId) => {
+        console.log(this.state.tasks[taskId])
+        alert(this.state.tasks[taskId].task)
+    }
     render() {
         return (
             <div className="container">
                 <div className="row justify-content-md-center">
-                    <div className="col-auto col-sm-auto col-md-auto">
-                        <h1 className="text-center todo-header">Todo App</h1>
+                {/* col-auto col-sm-auto col-md-auto */}
+                    <div className="">
+                        <h1 className="todo-header">Todo App</h1>
                         <div className="form_container">
                             <CreateTask createTask={this.createTask} />
                             <TaskList
@@ -53,6 +59,7 @@ export default class Main extends Component {
                                 deleteTask={this.deleteTask}
                                 editTask={this.editTask}
                                 toggleTask={this.toggleTask}
+                                detailList={this.detailList}
                             />
                         </div>
                     </div>
