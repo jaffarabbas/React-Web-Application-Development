@@ -1,4 +1,4 @@
-import Main from "./useEffects/Main";
+import Main from "./useContext/Main";
 
 function App() {
   return (
