@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Link , Switch , Route} from 'react-router-dom';
+import {BrowserRouter, NavLink , Switch , Route} from 'react-router-dom';
 import About from './Pages/About';
 import Home from './Pages/Home';
 import Product from './Pages/Product';
@@ -8,9 +8,9 @@ export default function Main() {
     return (
         <BrowserRouter>
             <div>
-                <Link to='/'>Home</Link>
-                <Link to='/about'>About</Link>
-                <Link to='/product'>Product</Link>
+                <NavLink to='/'>Home</NavLink>
+                <NavLink to='/about'>About</NavLink>
+                <NavLink to='/product'>Product</NavLink>
             </div>
             <div>
                 <Switch>
