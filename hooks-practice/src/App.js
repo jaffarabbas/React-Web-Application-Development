@@ -1,4 +1,4 @@
-import Main from "./useContext/Main";
+import Main from "./useReduser/Main";
 
 function App() {
   return (
