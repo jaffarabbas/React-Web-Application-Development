@@ -8,18 +8,22 @@ const Textfeild = () => {
         setName(event.target.value);
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         setList(name);
         console.log(list);
+        e.preventDefault();
     }
     return (
         <div>
             <div>Textfeild</div>
             <h1>{name}</h1>
-            <from>
+            <form onSubmit={handleSubmit}>
                 <input placeholder='enter value' value={name} onChange={changeHandle} />
-                <input type="submit" value="Submit" />
-            </from>
+                <input type="submit" onClick={(e) => handleSubmit(e)} value="Submit" />
+            </form>
+            {/* {list.forEach(val => {
+                console.log(val);
+            })} */}
         </div>
     )
 }
