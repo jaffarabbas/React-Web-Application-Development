@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Products = (props) => {
-    const { product } = props;
+    const { product, cart, onAddProduct, onRemoveProduct } = props;
     return (
         <div className='col-lg-4 col-md-1 col-sm-1 mt-2' key={product.id}>
             <div className='card h-100'>
@@ -11,7 +11,15 @@ const Products = (props) => {
                     <p className='card-text'>${product.price}</p>
                 </div>
                 <div className='card-footer'>
-                    <button className='btn btn-primary'>Add to cart</button>
+                    {
+                        cart ? <div>
+                            <button className='btn btn-danger' onClick={() => onRemoveProduct(product)}>-</button>
+                            <span className='p-2'>{cart.qty}</span>
+                            <button className='btn btn-success' onClick={() => onAddProduct(product)}>+</button>
+                        </div> : <div>
+                            <button onClick={() => onAddProduct(product)} className='btn btn-primary'>Add to cart</button>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
