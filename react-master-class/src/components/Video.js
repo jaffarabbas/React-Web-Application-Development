@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Video() {
+export default function Video({title}) {
   return (
-    <div>Video</div>
+    <div>{title}</div>
   )
 }
