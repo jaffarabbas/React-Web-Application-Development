@@ -1,9 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import Video from './components/Video';
 
 function App() {
   return (
-   <div></div>
+   <div>
+    Hello 
+    <Video />
+   </div>
   );
 }
 
