@@ -8,7 +8,7 @@ function App() {
     <Video title="jaffar"/>
     <Video title="jaffar1"/>
     <Video title="jaffar2"/>
-    <Video title="jaffar3"/>
+    <Video title="jaffar3" flag={true}/>
    </div>
   );
 }
