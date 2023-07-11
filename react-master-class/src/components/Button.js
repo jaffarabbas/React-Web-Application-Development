@@ -1,15 +1,14 @@
 import React from 'react'
 
-const Button = ({message,childern}) => {
-  function handleClick(e) {
-    e.preventDefault();
-    console.log('The link was clicked'+message);
-  }
+function CLickButton({message,children,onClick}){
+    function handleClick() {
+        console.log(message);
+        onClick();
+    }
+    
   return (
-    <div>
-        <button onClick={handleClick}>{childern}</button>
-    </div>
+    <button style={{backgroundColor: 'red'}} onClick={handleClick}>{children}</button>
   )
 }
 
-export default Button
+export default CLickButton
