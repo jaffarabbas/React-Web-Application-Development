@@ -1,11 +1,11 @@
 import React from 'react'
-import Button from './Button'
+import CLickButton from './Button'
 
 export default function Video({title,flag}) {
   return (
     <>
         <div>{title} {flag && 'hello flagger'}</div>
-        <Button message="Hello">Click</Button>
+        <CLickButton message="Hello" onClick={()=>console.log('hellll')}>Click</CLickButton>
     </>
   )
 }
