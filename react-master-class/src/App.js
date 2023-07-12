@@ -21,6 +21,7 @@ function App() {
   ];
   const [video, setvideo] = useState(arr);
   const [edit, setEdit] = useState(null);
+  const [id,setId] = useState(null);
 
   function addVideo(obj) {
     setvideo([...video,obj]);
@@ -35,11 +36,10 @@ function App() {
   }
   function updateVideo(obj){
     let id = video.findIndex((item,i) => item === obj);
-    console.log(id);
-    // let newVideo = [...video];
-    // newVideo.splice(id,1,obj);
-    // console.log(id,newVideo);
-    // setvideo(newVideo);
+    let newVideo = [...video];
+    newVideo.splice(id,1,obj);
+    console.log(id,newVideo);
+    setvideo(newVideo);
   }
   return (
    <div>
