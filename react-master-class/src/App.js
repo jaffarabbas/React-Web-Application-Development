@@ -7,35 +7,42 @@ import List from './components/List';
 function App() {
   let arr = [
     {
+      id:1,
       title: 'jaffar',
       flag: true
     },
     {
+      id:2,
       title: 'jaffar1',
       flag: false
     },
     {
+      id:3,
       title: 'jaffar2',
       flag: true
     },
   ];
+  
   const [video, setvideo] = useState(arr);
   const [edit, setEdit] = useState(null);
-  const [id,setId] = useState(null);
 
   function addVideo(obj) {
-    setvideo([...video,obj]);
+    setvideo([...video,{...obj,id: video.length+1}]);
   }
 
   function deleteVideo(index) {
-    setvideo(video.filter((item,i) => i !== index));
+    setvideo(video.filter((item,i) => item.id !== index));
     console.log(index);
   }
+
   function editVideo(index) {
-     setEdit(video.find((item,i) => i === index));
+    console.log(index);
+    setEdit(video.find((item,i) => item.id === index));
+    console.log(edit);
   }
+
   function updateVideo(obj){
-    let id = video.findIndex((item,i) => item === obj);
+    let id = video.findIndex((item,i) => item.id == obj.id);
     let newVideo = [...video];
     newVideo.splice(id,1,obj);
     console.log(id,newVideo);
