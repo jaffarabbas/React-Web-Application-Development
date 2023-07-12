@@ -7,7 +7,7 @@ function List({ video, deleteVideo, editVideo }) {
       {video.map((item, index) => (
         <Video
           key={index}
-          id={index}
+          id={item.id}
           title={item.title}
           flag={item.flag}
           deleteVideo={deleteVideo}
