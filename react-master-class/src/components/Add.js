@@ -15,6 +15,7 @@ function Add({add,update,edit}) {
             add(obj);
         }
         setObj(schema);
+        console.log(obj);
     }
 
     function handleChange(e) {
@@ -22,11 +23,11 @@ function Add({add,update,edit}) {
         setObj({...obj,[e.target.name]: e.target.value})
     }
 
-    useEffect(() => {
-        if(edit){
-            setObj(edit);
-        }
-    },[edit]);
+    // useEffect(() => {
+    //     if(edit){
+    //         setObj(edit);
+    //     }
+    // },[edit]);
     
   return (
     <div>
