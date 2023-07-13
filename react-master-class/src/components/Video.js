@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import CLickButton from './Button'
+import useVideoDispatch from '../hooks/VideoDispatch';
 
-export default function Video({title,flag,dispatch,editVideo,id}) {
+export default function Video({title,flag,editVideo,id}) {
+  const dispatch = useVideoDispatch();
   return (
     <>
         <div>{title} {flag && 'hello flagger'}</div>
