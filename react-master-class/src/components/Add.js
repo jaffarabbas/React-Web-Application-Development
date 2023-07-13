@@ -4,15 +4,15 @@ let schema = {
     flag: ''
 };
 
-function Add({add,update,edit}) {
+function Add({dispatch,update,edit}) {
     const [obj,setObj] = useState(schema);
 
     function handleSubmit(e) {
         e.preventDefault();
         if(edit){
-            update(obj);
+            dispatch({type: 'UPDATE',payload: obj});
         }else{
-            add(obj);
+            dispatch({type: 'ADD',payload: obj});
         }
         setObj(schema);
         console.log(obj);
