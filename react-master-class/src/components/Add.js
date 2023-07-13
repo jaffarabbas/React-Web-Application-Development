@@ -19,8 +19,7 @@ function Add({add,update,edit}) {
     }
 
     function handleChange(e) {
-        console.log(e.target.name,e.target.value);
-        setObj({...obj,[e.target.name]: e.target.value})
+        setObj({...obj,[e.target.name]: e.target.value});
     }
 
     // useEffect(() => {
@@ -28,7 +27,6 @@ function Add({add,update,edit}) {
     //         setObj(edit);
     //     }
     // },[edit]);
-    
   return (
     <div>
         <input type='text' name='title' value={obj.title} onChange={handleChange} placeholder='Title'/>
