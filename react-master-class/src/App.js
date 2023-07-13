@@ -23,6 +23,8 @@ function App() {
     },
   ];
   // const [video, setvideo] = useState(arr);
+  const [edit, setEdit] = useState(null);
+  const [video,dispatch] = useReducer(videoReduser,arr);
 
   function videoReduser(video,action){
     switch(action.type){
@@ -34,37 +36,23 @@ function App() {
         let id = video.findIndex((item,i) => item.id == action.payload.id);
         let newVideo = [...video];
         newVideo.splice(id,1,action.payload);
+        setEdit(null);
         return newVideo;
       default:
         return video;
     }
   }
 
-  const [video,dispatch] = useReducer(videoReduser,arr);
-
-  const [edit, setEdit] = useState(null);
-
-  function addVideo(obj) {
-    dispatch({type: 'ADD',payload: obj});
-  }
-
-  function deleteVideo(index) {
-    dispatch({type: 'DELETE',payload: index});
-  }
-
   function editVideo(index) {
     setEdit(video.find((item,i) => item.id === index));
   }
 
-  function updateVideo(obj){
-    dispatch({type: 'UPDATE',payload: obj});
-  }
-  
+
   return (
    <div>
-    <List editVideo={editVideo} deleteVideo={deleteVideo} video={video}></List>
+    <List editVideo={editVideo} dispatch={dispatch} video={video}></List>
     <br/>
-    <Add add={addVideo} update={updateVideo} edit={edit}></Add>
+    <Add dispatch={dispatch} edit={edit}></Add>
     {/* <CLickButton onClick={()=>{
       setvideo([...video,{title: 'jaffar3',flag: true}])
     }}>Add Video</CLickButton> */}
