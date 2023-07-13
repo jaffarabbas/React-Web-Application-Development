@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import './App.css';
 import Counter from './components/Counter';
 import Add from './components/Add';
@@ -22,35 +22,44 @@ function App() {
       flag: true
     },
   ];
-  let schema = {
-    title: '',
-    flag: ''
-  };
-  const [video, setvideo] = useState(arr);
+  // const [video, setvideo] = useState(arr);
+
+  function videoReduser(video,action){
+    switch(action.type){
+      case 'ADD':
+        return [...video,{...action.payload,id: video.length+1}];
+      case 'DELETE':
+        return video.filter((item,i) => item.id !== action.payload);
+      case 'UPDATE':
+        let id = video.findIndex((item,i) => item.id == action.payload.id);
+        let newVideo = [...video];
+        newVideo.splice(id,1,action.payload);
+        return newVideo;
+      default:
+        return video;
+    }
+  }
+
+  const [video,dispatch] = useReducer(videoReduser,arr);
+
   const [edit, setEdit] = useState(null);
 
   function addVideo(obj) {
-    setvideo([...video,{...obj,id: video.length+1}]);
+    dispatch({type: 'ADD',payload: obj});
   }
 
   function deleteVideo(index) {
-    setvideo(video.filter((item,i) => item.id !== index));
-    console.log(index);
+    dispatch({type: 'DELETE',payload: index});
   }
 
   function editVideo(index) {
-    console.log(index);
     setEdit(video.find((item,i) => item.id === index));
-    console.log(edit);
   }
 
   function updateVideo(obj){
-    let id = video.findIndex((item,i) => item.id == obj.id);
-    let newVideo = [...video];
-    newVideo.splice(id,1,obj);
-    console.log(id,newVideo);
-    setvideo(newVideo);
+    dispatch({type: 'UPDATE',payload: obj});
   }
+  
   return (
    <div>
     <List editVideo={editVideo} deleteVideo={deleteVideo} video={video}></List>
