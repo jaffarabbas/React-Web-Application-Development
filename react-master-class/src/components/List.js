@@ -1,7 +1,8 @@
-import React from "react";
 import Video from "./Video";
+import useVideoContext from "../hooks/Video";
 
-function List({ video, dispatch, editVideo }) {
+function List({ editVideo }) {
+  const video = useVideoContext();
   return (
     <>
       {video.map((item, index) => (
@@ -10,7 +11,6 @@ function List({ video, dispatch, editVideo }) {
           id={item.id}
           title={item.title}
           flag={item.flag}
-          dispatch={dispatch}
           editVideo={editVideo}
         />
       ))}
