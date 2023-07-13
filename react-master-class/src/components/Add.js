@@ -22,11 +22,11 @@ function Add({add,update,edit}) {
         setObj({...obj,[e.target.name]: e.target.value});
     }
 
-    // useEffect(() => {
-    //     if(edit){
-    //         setObj(edit);
-    //     }
-    // },[edit]);
+    useEffect(() => {
+        if(edit){
+            setObj(edit);
+        }
+    },[edit]);
   return (
     <div>
         <input type='text' name='title' value={obj.title} onChange={handleChange} placeholder='Title'/>
