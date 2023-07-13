@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import useVideoDispatch from '../hooks/VideoDispatch';
 let schema = {
     title: '',
     flag: ''
 };
 
-function Add({dispatch,update,edit}) {
+function Add({edit}) {
     const [obj,setObj] = useState(schema);
+    const dispatch = useVideoDispatch();
 
     function handleSubmit(e) {
         e.preventDefault();
