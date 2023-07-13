@@ -22,7 +22,10 @@ function App() {
       flag: true
     },
   ];
-  
+  let schema = {
+    title: '',
+    flag: ''
+  };
   const [video, setvideo] = useState(arr);
   const [edit, setEdit] = useState(null);
 
