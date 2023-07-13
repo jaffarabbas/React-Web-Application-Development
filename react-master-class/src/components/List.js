@@ -1,7 +1,7 @@
 import React from "react";
 import Video from "./Video";
 
-function List({ video, deleteVideo, editVideo }) {
+function List({ video, dispatch, editVideo }) {
   return (
     <>
       {video.map((item, index) => (
@@ -10,7 +10,7 @@ function List({ video, deleteVideo, editVideo }) {
           id={item.id}
           title={item.title}
           flag={item.flag}
-          deleteVideo={deleteVideo}
+          dispatch={dispatch}
           editVideo={editVideo}
         />
       ))}
