@@ -8,6 +8,7 @@ function Counter() {
         setNumber(number+1);
         num.current++;
         console.log(number);
+        console.log(num);
     }
   return (
     <>
