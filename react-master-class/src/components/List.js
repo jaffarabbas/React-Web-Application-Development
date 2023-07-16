@@ -1,8 +1,12 @@
 import Video from "./Video";
 import useVideoContext from "../hooks/Video";
+import { useEffect } from "react";
 
 function List({ editVideo }) {
   const video = useVideoContext();
+  useEffect(() => {
+    console.log("List.js: useEffect");
+  }, [video]);
   return (
     <>
       {video.map((item, index) => (
