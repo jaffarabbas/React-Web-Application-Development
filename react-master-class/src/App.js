@@ -31,6 +31,8 @@ function App() {
   const [mode, setMode] = useState("dark");
   function videoReduser(video, action) {
     switch (action.type) {
+      case "LOAD":
+        return action.payload;
       case "ADD":
         return [...video, { ...action.payload, id: video.length + 1 }];
       case "DELETE":
