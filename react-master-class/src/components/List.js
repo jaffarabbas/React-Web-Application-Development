@@ -5,14 +5,17 @@ import axios from "axios";
 import CLickButton from "./Button";
 import useVideoDispatch from "../hooks/VideoDispatch";
 function List({ editVideo }) {
-  const video = useVideoContext();
-  const dispatch = useVideoDispatch();
+  // const video = useVideoContext();
+  // const dispatch = useVideoDispatch();
 
-  const url = "https://jsonplaceholder.typicode.com/users";
+  const [video,setVideo] = useState([]);
+  const url = "http://localhost:5000/users";
 
   async function handleClick(){
     const data = await axios.get(url);
-    dispatch({ type: "LOAD", payload: data.data });
+    console.log(data);
+    setVideo(data.data);
+    // dispatch({ type: "LOAD", payload: data.data });
   }
   useEffect(() => {
     handleClick();
@@ -21,7 +24,10 @@ function List({ editVideo }) {
     <>
       {
         video.map((item, index) => {
-          return <p key={item.id}>{item.name}</p>
+          return <div key={item.id}>
+          <p>{item.title}</p>
+          <p>{item.flag ? 'true' : 'false'}</p>
+          </div>
         })
       }
       {/* {video.map((item, index) => (
