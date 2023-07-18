@@ -1,14 +1,18 @@
 import Video from "./Video";
 import useVideoContext from "../hooks/Video";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useDeferredValue, useEffect, useState, useTransition } from "react";
 import axios from "axios";
 import CLickButton from "./Button";
 import useVideoDispatch from "../hooks/VideoDispatch";
+import arr from "../data/data";
 function List({ editVideo }) {
   console.log('list rendered');
-  
-  const video = useVideoContext();
+
+  // const video = useVideoContext();
   const dispatch = useVideoDispatch();
+  const [video, setVideo] = useState([]);
+  // const differedVideo = useDeferredValue(video, { timeoutMs: 1000 });
+  const [isPending, startTransition] = useTransition();
   const url = "http://localhost:5000/users";
 
   const play = useCallback(async function handleClick(){
@@ -18,10 +22,14 @@ function List({ editVideo }) {
   },[dispatch]);
 
   useEffect(() => {
-    play();
+    // play();
   },[]);
 
-  
+  function fetch(){
+    startTransition(() => {
+      setVideo(arr);
+    });
+  }
   return (
     <>
       {video.map((item, index) => (
@@ -34,7 +42,8 @@ function List({ editVideo }) {
         />
       ))}
       <br></br>
-      <CLickButton onClick={play}>Fetch</CLickButton>
+      {/* <CLickButton onClick={play}>Fetch</CLickButton> */}
+      <CLickButton onClick={fetch}>{isPending ? 'Getting' : 'Fetch'}</CLickButton>
     </>
   );
 }
