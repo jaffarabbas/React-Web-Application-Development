@@ -1,21 +1,30 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from "react";
 
 function Counter() {
-    let [number,setNumber] = useState(0);
-    const num = useRef(0);
+  let [number, setNumber] = useState(1);
+  const num = useRef(0);
 
-    function handleClick() {
-        setNumber(number+1);
-        num.current++;
-        console.log(number);
-        console.log(num);
+  function handleClick() {
+    setNumber(number + 1);
+    num.current++;
+    console.log(number);
+    console.log(num);
+  }
+
+  const callBackFunc = useCallback(function fib(num) {
+    if (num === 1 || num === 2) {
+      return 1;
     }
+    return fib(num - 1) + fib(num - 2);
+  }, []);
+  const value = useMemo(() => callBackFunc(number), [number,callBackFunc]);
+
   return (
     <>
-        {number}
-        <button onClick={handleClick}>+</button>
+      {" "}
+      {value} <br /> {number} <button onClick={handleClick}> + </button>{" "}
     </>
-  )
+  );
 }
 
-export default Counter
+export default Counter;
