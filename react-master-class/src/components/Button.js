@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-function CLickButton({message,children,onClick}){
-    function handleClick() {
-        console.log(message);
-        onClick();
-    }
-    
-  return (
-    <button style={{backgroundColor: 'red'}} onClick={handleClick}>{children}</button>
-  )
-}
+//for component memoization
+const CLickButton = memo(
+  function CLickButton({message,children,onClick}){
+    console.log("rendered");
+      function handleClick() {
+          console.log(message ?? '');
+          onClick();
+      }
+    return (
+      <button style={{backgroundColor: 'red'}} onClick={handleClick}>{children}</button>
+    )
+});
 
 export default CLickButton
