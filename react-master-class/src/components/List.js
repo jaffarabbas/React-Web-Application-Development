@@ -1,22 +1,27 @@
 import Video from "./Video";
 import useVideoContext from "../hooks/Video";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import CLickButton from "./Button";
 import useVideoDispatch from "../hooks/VideoDispatch";
 function List({ editVideo }) {
+  console.log('list rendered');
+  
   const video = useVideoContext();
   const dispatch = useVideoDispatch();
   const url = "http://localhost:5000/users";
 
-  async function handleClick(){
+  const play = useCallback(async function handleClick(){
     const data = await axios.get(url);
     console.log(data);
     dispatch({ type: "LOAD", payload: data.data });
-  }
+  },[dispatch]);
+
   useEffect(() => {
-    handleClick();
-  }, []);
+    play();
+  },[]);
+
+  
   return (
     <>
       {video.map((item, index) => (
@@ -29,7 +34,7 @@ function List({ editVideo }) {
         />
       ))}
       <br></br>
-      <CLickButton onClick={handleClick}>Fetch</CLickButton>
+      <CLickButton onClick={play}>Fetch</CLickButton>
     </>
   );
 }
