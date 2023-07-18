@@ -1,4 +1,4 @@
-import { useContext, useReducer, useState } from "react";
+import { useCallback, useContext, useReducer, useState } from "react";
 import "./App.css";
 import Counter from "./components/Counter";
 import Add from "./components/Add";
@@ -9,25 +9,8 @@ import VideoContext from "./context/VideoContext";
 import VideoDispatchContext from "./context/VideoDispaatchContext";
 
 function App() {
-  let arr = [
-    {
-      id: 1,
-      title: "jaffar",
-      flag: true,
-    },
-    {
-      id: 2,
-      title: "jaffar1",
-      flag: false,
-    },
-    {
-      id: 3,
-      title: "jaffar2",
-      flag: true,
-    },
-  ];
   const [edit, setEdit] = useState(null);
-  const [video, dispatch] = useReducer(videoReduser, arr);
+  const [video, dispatch] = useReducer(videoReduser, []);
   const [mode, setMode] = useState("dark");
   function videoReduser(video, action) {
     switch (action.type) {
@@ -48,26 +31,30 @@ function App() {
     }
   }
 
-  function editVideo(index) {
-    setEdit(video.find((item, i) => item.id === index));
-  }
 
+  const editVideo = useCallback(function editVideo(index) {
+    setEdit(video.find((item, i) => item.id === index));
+  },[video]);
   //it is constant it will never change
   // const themeContext = useContext(ThemeContext);
   // console.log(themeContext);
 
-  function changeTheme() {
+ 
+
+  const theme = useCallback( function changeTheme() {
     setMode(mode === "dark" ? "light" : "dark");
-  }
+  },[mode]);
   return (
     <ThemeContext.Provider value={mode}>
       <VideoContext.Provider value={video}>
         <VideoDispatchContext.Provider value={dispatch}>
           <div className={`App ${mode}`}>
-            <CLickButton onClick={changeTheme}>Theme</CLickButton>
+            <CLickButton onClick={theme}>Theme</CLickButton>
             <List editVideo={editVideo}></List>
             <br />
             <Add edit={edit}></Add>
+            <br/>
+          <Counter></Counter>
           </div>
         </VideoDispatchContext.Provider>
       </VideoContext.Provider>
