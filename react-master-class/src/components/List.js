@@ -8,9 +8,9 @@ import arr from "../data/data";
 function List({ editVideo }) {
   console.log('list rendered');
 
-  // const video = useVideoContext();
+  const video = useVideoContext();
   const dispatch = useVideoDispatch();
-  const [video, setVideo] = useState([]);
+  // const [video, setVideo] = useState([]);
   // const differedVideo = useDeferredValue(video, { timeoutMs: 1000 });
   const [isPending, startTransition] = useTransition();
   const url = "http://localhost:5000/users";
@@ -22,16 +22,25 @@ function List({ editVideo }) {
   },[dispatch]);
 
   useEffect(() => {
-    // play();
+    play();
   },[]);
 
-  function fetch(){
-    startTransition(() => {
-      setVideo(arr);
-    });
-  }
+  // function fetch(){
+  //   startTransition(() => {
+  //     setVideo(arr);
+  //   });
+  // }
   return (
     <>
+      {/* {video.map((item, index) => (
+        <Video
+          key={index}
+          id={item.id}
+          title={item.title}
+          flag={item.flag}
+          editVideo={editVideo}
+        />
+      ))} */}
       {video.map((item, index) => (
         <Video
           key={index}
@@ -42,8 +51,8 @@ function List({ editVideo }) {
         />
       ))}
       <br></br>
-      {/* <CLickButton onClick={play}>Fetch</CLickButton> */}
-      <CLickButton onClick={fetch}>{isPending ? 'Getting' : 'Fetch'}</CLickButton>
+      <CLickButton onClick={play}>Fetch</CLickButton>
+      {/* <CLickButton onClick={fetch}>{isPending ? 'Getting' : 'Fetch'}</CLickButton> */}
     </>
   );
 }
